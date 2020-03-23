@@ -2,6 +2,17 @@ html {
 	scroll-behavior: smooth;
 }
 
+@media screen and (max-width: 768px) {
+    main {
+        min-height: 100vh;
+    }
+
+    main > .content {
+        position: absolute;
+        width: 100%;
+    }
+}
+
 .markdown-section {
     min-height: 100%;
 }
