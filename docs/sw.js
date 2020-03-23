@@ -9,7 +9,6 @@
 const RUNTIME = 'docsify'
 const HOSTNAME_WHITELIST = [
     self.location.hostname,
-    'seudev.com',
     'assets-cdn.github.com',
     'raw.githubusercontent.com',
     'fonts.gstatic.com',
