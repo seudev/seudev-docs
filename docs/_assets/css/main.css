@@ -67,6 +67,12 @@ section.cover.show ~ * {
     display: none;
 }
 
+#dark_mode {
+    float: right;
+    position: relative;
+    top: -19px;
+    right: 15px;
+}
 
 /* back to top button */
 #back-to-top {

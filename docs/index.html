@@ -72,7 +72,23 @@
               let section = '\n<section class="copyright"><span>Copyright © 2020-' + new Date().getFullYear() + ' Seudev</span></section>';
               next(html + section);
             });
-          }
+          },
+          function (hook, vm) {
+            //Move dark mode button to sidebar
+
+            hook.beforeEach(function (content) {
+              let button = document.querySelector('.sidebar > #dark_mode');
+              if (button) {
+                button.remove();
+              }
+              return content;
+            });
+
+            hook.doneEach(function (html, next) {
+              let appName = document.querySelector('.sidebar > .app-name');
+              appName.parentNode.insertBefore(document.getElementById('dark_mode'), appName.nextElementSibling);
+            });
+          },
         ],
         pagination: {
           crossChapter: true,
