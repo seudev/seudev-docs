@@ -43,6 +43,10 @@ html:not([style*='--docsify_dark_mode_bg:white;']) .sidebar > .app-name img {
     background: none;
 }
 
+.sidebar-toggle, body.close .sidebar-toggle {
+    background: transparent;
+}
+
 /* cover */
 section.cover .cover-main>p:last-child a:last-child:hover {
     opacity: 1;
@@ -59,7 +63,7 @@ section.cover .cover-main>p:last-child a:hover {
     color: #fff;
 }
 
-section.cover.show + main {
+section.cover.show ~ * {
     display: none;
 }
 
