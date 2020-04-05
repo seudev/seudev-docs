@@ -3,4 +3,4 @@
     * [Git](/commands/git.md)
     * [Process commands](/commands/process.md)
 * Configuration
-    * [Proxy](/configuration/proxy.md)
+    * [Proxy configurations](/configuration/proxy.md)
