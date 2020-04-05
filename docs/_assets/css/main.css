@@ -18,6 +18,10 @@ html {
     min-height: 100%;
 }
 
+.content .markdown-section pre > code {
+    padding: 5px;
+}
+
 .copyright {
     color: #ababad;
     text-align: center;
