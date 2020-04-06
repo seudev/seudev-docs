@@ -177,3 +177,14 @@ section.cover.show ~ * {
     background-color: var(--theme-color,#42b983);
     color: #fff;
 }
+
+#seudev-docs-card {
+    margin: auto;
+    display: block;
+}
+
+#seudev-docs-card + p {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 10px;
+}
