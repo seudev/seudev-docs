@@ -11,6 +11,8 @@ docker run --rm -d --name postgres-12 \
     postgres-alpine:12
 ```
 
+?> For more details see the [Docker Hub](https://hub.docker.com/_/postgres).
+
 ## Create a database
 
 ```sql
