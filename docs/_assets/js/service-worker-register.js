@@ -23,34 +23,38 @@ function showUpdateAvailable(newWorker) {
     });
 };
 
-window.afterRegisterServiceWorker = new Promise((resolve, reject) => {
+window.afterTryRegisterServiceWorker = new Promise((resolve, reject) => {
     window.tryRegisterServiceWorker = () => {
         if (typeof navigator.serviceWorker !== 'undefined') {
             let sw = navigator.serviceWorker.register('sw.js');
             resolve(sw);
         } else {
-            reject(new Error("Undefined service worker"));
+            resolve(null);
         }
     };
 });
 
-window.isUpdateAvailable = window.afterRegisterServiceWorker.then(serviceWorker => serviceWorker.then(reg => {
-    return new Promise((resolve, reject) => {
-        reg.addEventListener('updatefound', () => {
-            let newWorker = reg.installing;
-            newWorker.addEventListener('statechange', () => {
-                switch (newWorker.state) {
-                    case 'installed':
-                        if (navigator.serviceWorker.controller) {
-                            resolve({ updateAvailable: true, newWorker });
-                        } else {
-                            resolve({ updateAvailable: false });
-                        }
-                        break;
-                }
+window.isUpdateAvailable = window.afterTryRegisterServiceWorker.then(serviceWorker => {
+    if (!serviceWorker) {
+        return Promise.resolve({ updateAvailable: false });
+    }
+
+    return serviceWorker.then(reg => {
+        return new Promise((resolve, reject) => {
+            reg.addEventListener('updatefound', () => {
+                let newWorker = reg.installing;
+                newWorker.addEventListener('statechange', () => {
+                    switch (newWorker.state) {
+                        case 'installed':
+                            if (navigator.serviceWorker.controller) {
+                                resolve({ updateAvailable: true, newWorker });
+                            } else {
+                                resolve({ updateAvailable: false });
+                            }
+                            break;
+                    }
+                });
             });
         });
     });
-})).catch(ex => {
-    return { updateAvailable: false };
 });
