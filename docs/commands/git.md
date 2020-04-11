@@ -28,6 +28,25 @@ git add *
 git commit -m "Description message of changes made"
 ```
 
+### Add the remote origin
+```sh
+git remote add origin URL
+```
+
+***Note:*** *Replace the `URL` word by the desired remote origin url.*
+
+### Set the remote origin
+```sh
+git remote set-url origin URL
+```
+
+***Note:*** *Replace the `URL` word by the desired remote origin url.*
+
+### Show the remote origins
+```sh
+git remote -v
+```
+
 ### Push the committed changes to the remote repository
 
 If it is your first push or if you still not has defined the upstream, use the below command:
