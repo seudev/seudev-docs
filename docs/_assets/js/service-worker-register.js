@@ -26,34 +26,32 @@ function showUpdateAvailable(newWorker) {
 window.afterTryRegisterServiceWorker = new Promise((resolve, reject) => {
     window.tryRegisterServiceWorker = () => {
         if (typeof navigator.serviceWorker !== 'undefined') {
-            let sw = navigator.serviceWorker.register('sw.js');
-            resolve(sw);
+            let promise = navigator.serviceWorker.register('sw.js');
+            resolve(promise);
         } else {
             resolve(null);
         }
     };
 });
 
-window.isUpdateAvailable = window.afterTryRegisterServiceWorker.then(serviceWorker => {
-    if (!serviceWorker) {
+window.isUpdateAvailable = window.afterTryRegisterServiceWorker.then(registration => {
+    if (!registration) {
         return Promise.resolve({ updateAvailable: false });
     }
 
-    return serviceWorker.then(reg => {
-        return new Promise((resolve, reject) => {
-            reg.addEventListener('updatefound', () => {
-                let newWorker = reg.installing;
-                newWorker.addEventListener('statechange', () => {
-                    switch (newWorker.state) {
-                        case 'installed':
-                            if (navigator.serviceWorker.controller) {
-                                resolve({ updateAvailable: true, newWorker });
-                            } else {
-                                resolve({ updateAvailable: false });
-                            }
-                            break;
-                    }
-                });
+    return new Promise((resolve, reject) => {
+        registration.addEventListener('updatefound', () => {
+            let newWorker = registration.installing;
+            newWorker.addEventListener('statechange', () => {
+                switch (newWorker.state) {
+                    case 'installed':
+                        if (navigator.serviceWorker.controller) {
+                            resolve({ updateAvailable: true, newWorker });
+                        } else {
+                            resolve({ updateAvailable: false });
+                        }
+                        break;
+                }
             });
         });
     });
