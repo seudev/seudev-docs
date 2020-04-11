@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css" />
     <link rel="stylesheet" href="./_assets/prism/prism.css">
     <link rel="stylesheet" href="./_assets/css/main.css">
+    <link rel="stylesheet" href="./_assets/css/update-available.css">
   </head>
 
   <body>
@@ -31,6 +32,8 @@
         <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path>
       </svg>
     </div>
+
+    <script src="./_assets/js/service-worker-register.js"></script>
 
     <script>
       window.$docsify = {
@@ -84,11 +87,21 @@
               return content;
             });
 
-            hook.doneEach(function (html, next) {
+            hook.doneEach(function () {
               let appName = document.querySelector('.sidebar > .app-name');
               appName.parentNode.insertBefore(document.getElementById('dark_mode'), appName.nextElementSibling);
             });
           },
+          function (hook, vm) {
+            //Update available
+            hook.ready(function () {
+              window.isUpdateAvailable.then(({ updateAvailable, newWorker }) => {
+                if (updateAvailable) {
+                  showUpdateAvailable(newWorker);
+                }
+              });
+            });
+          }
         ],
         pagination: {
           crossChapter: true,
@@ -118,9 +131,7 @@
 
     <!-- Service Worker -->
     <script>
-      if (typeof navigator.serviceWorker !== 'undefined') {
-        navigator.serviceWorker.register('sw.js')
-      }
+      tryRegisterServiceWorker();
     </script>
   </body>
 

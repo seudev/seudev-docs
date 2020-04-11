@@ -1,0 +1,41 @@
+#update-available {
+    display: flex;
+    align-items: center;
+    background-color: #1de9b6;
+    padding: 29px 10px;
+    margin-bottom: 1rem;
+}
+
+#update-available:hover {
+    cursor: pointer;
+}
+
+#update-available > .icon {
+    color: #fff;
+}
+
+#update-available > .message {
+    width: 100%;
+    padding-left: 20px;
+}
+
+#update-available > .message > .title {
+    font-size: 15px;
+    display: block;
+    font-weight: 500;
+    color: #364149;
+}
+
+#update-available > .message > a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #364149;
+}
+
+#update-available:hover > .message > a {
+    text-decoration: underline;
+}
+
+#update-available + .app-name {
+    display: none;
+}
