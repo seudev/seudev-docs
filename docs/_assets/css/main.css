@@ -178,11 +178,6 @@ section.cover.show ~ * {
     color: #fff;
 }
 
-#seudev-docs-card {
-    margin: auto;
-    display: block;
-}
-
 #seudev-docs-card + p {
     font-size: 1.2rem;
     text-align: center;
