@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Update the PROJECT_HASH comment in the docs/sw.js file
+sed -i "s|//PROJECT_HASH=.*|//PROJECT_HASH=$(~/git/seudev/env-config/bin/helpers/hash-dir)|g" docs/sw.js
