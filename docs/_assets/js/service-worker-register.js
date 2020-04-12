@@ -38,7 +38,7 @@ window.afterTryRegisterServiceWorker = new Promise((resolve, reject) => {
                 if (refreshing) {
                     return;
                 }
-                window.location.reload();
+                window.location.reload(true);
                 refreshing = true;
             });
 
