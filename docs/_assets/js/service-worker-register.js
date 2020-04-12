@@ -23,6 +23,11 @@ function showUpdateAvailable(newWorker) {
     });
 };
 
+function removeSearchCache() {
+    localStorage.removeItem('docsify.search.expires/docs.seudev.com');
+    localStorage.removeItem('docsify.search.index/docs.seudev.com');
+}
+
 window.afterTryRegisterServiceWorker = new Promise((resolve, reject) => {
     window.tryRegisterServiceWorker = () => {
         if (typeof navigator.serviceWorker !== 'undefined') {
