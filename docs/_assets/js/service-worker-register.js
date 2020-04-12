@@ -52,17 +52,23 @@ window.isUpdateAvailable = window.afterTryRegisterServiceWorker.then(registratio
     return new Promise((resolve, reject) => {
         registration.addEventListener('updatefound', () => {
             let newWorker = registration.installing;
-            newWorker.addEventListener('statechange', () => {
-                switch (newWorker.state) {
-                    case 'installed':
-                        if (navigator.serviceWorker.controller) {
-                            resolve({ updateAvailable: true, newWorker });
-                        } else {
-                            resolve({ updateAvailable: false });
-                        }
-                        break;
-                }
-            });
+
+            let onStateChange = () => {
+                if (newWorker.state === 'installed') {
+                    if (navigator.serviceWorker.controller) {
+                        resolve({ updateAvailable: true, newWorker });
+                    } else {
+                        resolve({ updateAvailable: false });
+                    }
+                    return true;
+                };
+                return false;
+            };
+
+            let installed = onStateChange();
+            if (!installed) {
+                newWorker.addEventListener('statechange', onStateChange);
+            }
         });
     });
 });
