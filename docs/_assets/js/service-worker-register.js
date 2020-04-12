@@ -51,10 +51,10 @@ window.afterTryRegisterServiceWorker = new Promise((resolve, reject) => {
 
 window.afterTryRegisterServiceWorker.then(registration => {
     if (registration) {
-        //Try update each 5 minutes
+        //Try update each 1 minute
         setInterval(() => {
             registration.update();
-        }, (1000 * 60 * 5));
+        }, (1000 * 60 * 1));
     }
 });
 
