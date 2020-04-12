@@ -44,6 +44,15 @@ window.afterTryRegisterServiceWorker = new Promise((resolve, reject) => {
     };
 });
 
+window.afterTryRegisterServiceWorker.then(registration => {
+    if (registration) {
+        //Try update each 5 minutes
+        setInterval(() => {
+            registration.update();
+        }, (1000 * 60 * 5));
+    }
+});
+
 window.isUpdateAvailable = window.afterTryRegisterServiceWorker.then(registration => {
     if (!registration) {
         return Promise.resolve({ updateAvailable: false });
@@ -68,11 +77,6 @@ window.isUpdateAvailable = window.afterTryRegisterServiceWorker.then(registratio
             let installed = onStateChange();
             if (!installed) {
                 newWorker.addEventListener('statechange', onStateChange);
-
-                //Try update each 5 minutes
-                setInterval(() => {
-                    registration.update();
-                }, (1000 * 60 * 5));
             }
         });
     });
