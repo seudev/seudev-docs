@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# After startup execute: docsify serve docs
+
+docker run --name seudev-docs -ti --rm -p 3000:3000 -v `pwd`:/usr/src/app seudev/node-4dev:1.3-alpine
