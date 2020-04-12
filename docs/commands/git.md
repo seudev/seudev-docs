@@ -93,6 +93,15 @@ git checkout -b BRANCH_NAME
 
 ***Note:*** *Replace the `BRANCH_NAME` word by the desired branch name.*
 
+### Create a orphan branch
+```sh
+git checkout --orphan BRANCH_NAME
+```
+
+***Note:*** *Replace the `BRANCH_NAME` word by the desired branch name.*
+
+?> If you desire remove all files use the command: `git rm -rf .`
+
 ### Create a branch from a specific commit
 ```sh
 git checkout -b -BRANCH_NAME COMMIT_HASH
