@@ -1,4 +1,4 @@
-//PROJECT_HASH=717319a7e415f6543507e9f2ded92f0a6cacaeae
+const PROJECT_HASH = "d8af7a7787eac6bea2b52d4250ece4dc5abab721";
 
 /* ===========================================================
  * docsify sw.js
@@ -8,7 +8,7 @@
  * Register service worker.
  * ========================================================== */
 
-const RUNTIME = 'docsify'
+const RUNTIME = `docsify-${PROJECT_HASH}`;
 const HOSTNAME_WHITELIST = [
     self.location.hostname,
     'assets-cdn.github.com',

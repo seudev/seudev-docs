@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # Update the PROJECT_HASH comment in the docs/sw.js file
-sed -i "s|//PROJECT_HASH=.*|//PROJECT_HASH=$(hash-dir)|g" docs/sw.js
+sed -i "s|const PROJECT_HASH =.*|const PROJECT_HASH = \"$(hash-dir)\";|g" docs/sw.js
