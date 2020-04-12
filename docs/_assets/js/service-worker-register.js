@@ -68,6 +68,11 @@ window.isUpdateAvailable = window.afterTryRegisterServiceWorker.then(registratio
             let installed = onStateChange();
             if (!installed) {
                 newWorker.addEventListener('statechange', onStateChange);
+
+                //Try update each 5 minutes
+                setInterval(() => {
+                    registration.update();
+                }, (1000 * 60 * 5));
             }
         });
     });
