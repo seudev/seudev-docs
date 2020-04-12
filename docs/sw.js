@@ -1,3 +1,5 @@
+//PROJECT_HASH=60cac05c1a6abfb21366bbf5bc06a7cefa77f836
+
 /* ===========================================================
  * docsify sw.js
  * ===========================================================
@@ -38,6 +40,12 @@ const getFixedUrl = (req) => {
     }
     return url.href
 }
+
+self.addEventListener('message', function (event) {
+    if (event.data.action === 'skipWaiting') {
+        self.skipWaiting();
+    }
+});
 
 /**
  *  @Lifecycle Activate

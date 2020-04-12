@@ -27,6 +27,16 @@ window.afterTryRegisterServiceWorker = new Promise((resolve, reject) => {
     window.tryRegisterServiceWorker = () => {
         if (typeof navigator.serviceWorker !== 'undefined') {
             let promise = navigator.serviceWorker.register('sw.js');
+
+            let refreshing;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (refreshing) {
+                    return;
+                }
+                window.location.reload();
+                refreshing = true;
+            });
+
             resolve(promise);
         } else {
             resolve(null);
