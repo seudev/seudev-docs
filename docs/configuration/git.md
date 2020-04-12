@@ -9,6 +9,7 @@ git config --global user.email "email@example.com"
 ```
 
 ## Push
+
 Use the below command to refuse the push if the remote branch’s name is different from the local branch.
 ```sh
 git config --global push.default simple
@@ -20,3 +21,7 @@ Use the below command to cache the remote credentials by 2 hours.
 ```sh
 git config --global credential.helper 'cache --timeout 7200'
 ```
+
+## Update your Git credentials on Windows
+
+Go to **Control Panel** > **Credential Manager** > **Generic Credentials**. Find the credentials related to your git account and edit it.
