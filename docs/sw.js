@@ -1,4 +1,4 @@
-const PROJECT_HASH = "d8af7a7787eac6bea2b52d4250ece4dc5abab721";
+const PROJECT_HASH = "05c156e450ea9db800f86b79213a3de4b8e9bd55";
 
 /* ===========================================================
  * docsify sw.js
